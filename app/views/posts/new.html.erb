@@ -1,0 +1,9 @@
+<div class="mt-5 pb-3">
+  <h2>글쓰기</h2>
+  <%= render "form", post: @post do |f| %>
+      <div class="btn-group">
+        <%= f.submit "글쓰기", class: "btn btn-secondary" %>
+        <%= link_to "취소", root_path, class: "btn btn-secondary" %>
+      </div>
+  <% end %>
+</div>

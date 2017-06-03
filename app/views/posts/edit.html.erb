@@ -1,0 +1,13 @@
+<div class="mt-5 pb-3">
+  <h2>수정하기</h2>
+  <%= render "form", post: @post do |f| %>
+      <%= hidden_field_tag(:page, "#{@page}") %>
+      <%= hidden_field_tag(:s_type, "#{@s_type}") %>
+      <%= hidden_field_tag(:search, "#{@search}") %>
+      <%= hidden_field_tag(:utf8, "#{@utf8}") %>
+      <div class="btn-group">
+        <%= f.submit "수정하기", class: "btn btn-secondary" %>
+        <%= link_to "취소", :back, class: "btn btn-secondary" %>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,38 @@
+<section class="post_table pb-3">
+  <h2 class="sr-only">게시글 목록</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>글번호</th>
+      <th class="post_title">제목</th>
+      <th>작성자</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.id %></td>
+              <td><%= link_to "#{post.title}", post_path(post, page: @page, search: @search, s_type: @s_type, utf8: @utf8 ) %></td>
+          <td><%= post.writer %></td>
+        </tr>
+    <% end %>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="3">
+        <div class="digg_pagination">
+          <%= will_paginate @posts %>
+        </div>
+        <%= form_tag(root_path, method: :get, class: "s-form") do %>
+            <%= select_tag(:s_type, options_for_select([["제목", "s_title"], ["작성자", "s_writer"]]), class: "custom-select") %>
+            <%= search_field_tag(:search, '', class: "form-control s-bar") %>
+            <input type="submit" value="검색" class="btn btn-secondary">
+        <% end %>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+  <%= link_to "글쓰기", new_post_path, class: "btn btn-secondary" %>
+</section>
+
+

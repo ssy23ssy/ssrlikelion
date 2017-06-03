@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko|en">
+<head>
+  <title>LikelionCRUD</title>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<img src="<%= asset_path 'bonobono_back.jpg' %>" class="background" alt="보노보노 배경">
+
+<div class="container">
+  <div class="row justify-content-center py-4">
+    <div class="col-lg-7 col-md-8 col-xs-9">
+      <header>
+        <h1><a href="/">왜<br>X같은<br>보노보노인가?</a></h1>
+      </header>
+    </div>
+  </div>
+
+  <div class="userinfo">
+    <% if user_signed_in? %>
+        <div class="btn-group sign-group">
+          <%= link_to "#{current_user.name}", edit_user_registration_path, class: "btn btn-secondary btn-sm sign-btn" %>
+          <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete, class: "btn btn-secondary btn-sm sign-btn" %>
+        </div>
+    <% else %>
+        <div class="btn-group sign-group">
+          <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-secondary btn-sm sign-btn" %>
+          <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-secondary btn-sm sign-btn" %>
+        </div>
+    <% end %>
+
+  </div>
+  <div class="row justify-content-center pb-3">
+    <div class="col-lg-7 col-md-8 col-xs-9">
+      <%= yield %>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
